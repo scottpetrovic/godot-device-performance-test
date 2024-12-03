@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvww53ocvp08f"]
+
+[ext_resource type="Script" path="res://test_scene.gd" id="1_06caa"]
+
+[sub_resource type="Environment" id="Environment_jn4bk"]
+background_mode = 1
+background_color = Color(0.115406, 0.398903, 0.569938, 1)
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_c01et"]
+size = Vector2(20, 20)
+
+[node name="TestScene" type="Node3D"]
+script = ExtResource("1_06caa")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 232.0
+offset_bottom = 201.0
+
+[node name="FPSLabel" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "FPS: 20"
+
+[node name="PolygonCountLabel" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Poly Count: "
+
+[node name="DrawCallsLabel" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Draw calls"
+
+[node name="ModelCountLabel" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Model count"
+
+[node name="AddModelsButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Add 10 models"
+
+[node name="RemoveModelsButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Remove 10 models"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jn4bk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_c01et")
