@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvww53ocvp08f"]
+[gd_scene load_steps=5 format=3 uid="uid://bvww53ocvp08f"]
 
 [ext_resource type="Script" path="res://test_scene.gd" id="1_06caa"]
+[ext_resource type="Script" path="res://orbit_camera.gd" id="2_bu4di"]
 
 [sub_resource type="Environment" id="Environment_jn4bk"]
 background_mode = 1
@@ -22,10 +23,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 222.0
+offset_bottom = 146.0
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 0
-offset_right = 232.0
-offset_bottom = 201.0
+offset_left = 14.0
+offset_top = 15.0
+offset_right = 199.0
+offset_bottom = 577.0
+theme_override_constants/separation = 10
 
 [node name="FPSLabel" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
@@ -43,18 +53,45 @@ text = "Draw calls"
 layout_mode = 2
 text = "Model count"
 
-[node name="AddModelsButton" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-text = "Add 10 models"
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -185.0
+offset_bottom = 562.0
+grow_horizontal = 0
+theme_override_constants/separation = 10
 
-[node name="RemoveModelsButton" type="Button" parent="Control/VBoxContainer"]
+[node name="AddModelsButton" type="Button" parent="Control/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Remove 10 models"
+text = "Add 10 monkeys"
+
+[node name="RemoveModelsButton" type="Button" parent="Control/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Remove 10 monkeys"
+
+[node name="ShadowsEnableButton" type="Button" parent="Control/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+toggle_mode = true
+text = "Toggle Shadows"
+
+[node name="ToggleVSyncButton" type="Button" parent="Control/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+toggle_mode = true
+text = "Toggle VSync"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10)
+script = ExtResource("2_bu4di")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.533585, 0.845746, 0, -0.845746, -0.533585, 0, 2.99102, 0)
+light_energy = 0.3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jn4bk")
