@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvww53ocvp08f"]
+[gd_scene load_steps=17 format=3 uid="uid://bvww53ocvp08f"]
 
 [ext_resource type="Script" path="res://test_scene.gd" id="1_06caa"]
 [ext_resource type="Script" path="res://orbit_camera.gd" id="2_bu4di"]
+[ext_resource type="Script" path="res://toggle_buttons.gd" id="2_go6nl"]
 
 [sub_resource type="Environment" id="Environment_jn4bk"]
 background_mode = 1
@@ -11,6 +12,49 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_c01et"]
 size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uvag2"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_3psjy"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8wjgh"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Gradient" id="Gradient_lgos8"]
+colors = PackedColorArray(1.54018e-06, 0.826293, 0.838039, 1, 1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_svp3l"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w2mp1"]
+emission_shape = 1
+emission_sphere_radius = 2.0
+gravity = Vector3(0, 9.8, 0)
+color = Color(0.945288, 0.34465, 0.33894, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dp6u7"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5iqwb"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Curve" id="Curve_xxfuo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.054945), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_f6pm6"]
+curve = SubResource("Curve_xxfuo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ixxhh"]
+emission_shape = 1
+emission_sphere_radius = 2.0
+gravity = Vector3(0, 9.8, 0)
+color = Color(0.945288, 0.34465, 0.33894, 1)
+alpha_curve = SubResource("CurveTexture_f6pm6")
 
 [node name="TestScene" type="Node3D"]
 script = ExtResource("1_06caa")
@@ -58,32 +102,61 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -185.0
-offset_bottom = 562.0
+offset_left = -203.0
+offset_top = 15.0
+offset_right = -20.0
+offset_bottom = 381.0
 grow_horizontal = 0
 theme_override_constants/separation = 10
+metadata/_edit_group_ = true
 
 [node name="AddModelsButton" type="Button" parent="Control/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 text = "Add 10 monkeys"
 
 [node name="RemoveModelsButton" type="Button" parent="Control/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 text = "Remove 10 monkeys"
 
 [node name="ShadowsEnableButton" type="Button" parent="Control/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 toggle_mode = true
 text = "Toggle Shadows"
 
 [node name="ToggleVSyncButton" type="Button" parent="Control/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 toggle_mode = true
 text = "Toggle VSync"
+
+[node name="ToggleContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -410.0
+offset_top = 15.0
+offset_right = -217.0
+offset_bottom = 179.0
+grow_horizontal = 0
+theme_override_constants/separation = 10
+script = ExtResource("2_go6nl")
+metadata/_edit_group_ = true
+
+[node name="ToggleCPUParticlesButton" type="Button" parent="Control/ToggleContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+toggle_mode = true
+text = "Toggle CPU Particles"
+
+[node name="ToggleGPUParticlesButton" type="Button" parent="Control/ToggleContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+toggle_mode = true
+text = "Toggle GPU Particles"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10)
@@ -98,3 +171,64 @@ environment = SubResource("Environment_jn4bk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_c01et")
+
+[node name="CPUParticleLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.93809, 0.119238, 0)
+pixel_size = 0.01
+billboard = 1
+no_depth_test = true
+text = "CPU Particle"
+
+[node name="CPUParticles" type="CPUParticles3D" parent="CPUParticleLabel"]
+material_override = SubResource("StandardMaterial3D_uvag2")
+amount = 30
+mesh = SubResource("BoxMesh_3psjy")
+emission_shape = 1
+emission_sphere_radius = 2.0
+gravity = Vector3(0, 9.8, 0)
+color = Color(0.11038, 0.76674, 0.818836, 1)
+
+[node name="CPUParticles2" type="CPUParticles3D" parent="CPUParticleLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.10037)
+material_override = SubResource("StandardMaterial3D_8wjgh")
+amount = 30
+mesh = SubResource("BoxMesh_3psjy")
+emission_shape = 1
+emission_sphere_radius = 2.0
+gravity = Vector3(0, 9.8, 0)
+color = Color(0.11038, 0.76674, 0.818836, 1)
+color_ramp = SubResource("Gradient_lgos8")
+
+[node name="CPUParticleLabel2" type="Label3D" parent="CPUParticleLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.08035)
+pixel_size = 0.01
+billboard = 1
+no_depth_test = true
+text = "CPU Particle w/ Alpha"
+
+[node name="GPUParticlesLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.63094, 0.119238, 0)
+pixel_size = 0.01
+billboard = 1
+no_depth_test = true
+text = "GPU Particle"
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="GPUParticlesLabel"]
+material_override = SubResource("StandardMaterial3D_svp3l")
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_w2mp1")
+draw_pass_1 = SubResource("BoxMesh_dp6u7")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="GPUParticlesLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.60314)
+material_override = SubResource("StandardMaterial3D_5iqwb")
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_ixxhh")
+draw_pass_1 = SubResource("BoxMesh_dp6u7")
+
+[node name="GPUParticlesLabel2" type="Label3D" parent="GPUParticlesLabel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.4992)
+pixel_size = 0.01
+billboard = 1
+no_depth_test = true
+text = "GPU Particle w/ Alpha"
