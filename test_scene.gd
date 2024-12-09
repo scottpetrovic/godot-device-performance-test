@@ -14,14 +14,13 @@ var meshes: Array[MeshInstance3D] = []
 @onready var shadows_enable_button: Button = $Control/VBoxContainer2/ShadowsEnableButton
 @onready var toggle_v_sync_button: Button = $Control/VBoxContainer2/ToggleVSyncButton
 
+@onready var world_environment: WorldEnvironment = $WorldEnvironment
 
 
 # Variable to store the monkey model's polygon count
 var model_poly_count: int = 0
 
 func _ready():
-	
-	
 	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 
 	add_models_button.pressed.connect(add_models)
@@ -51,7 +50,7 @@ func _toggle_shadows(toggled: bool) -> void:
 	$DirectionalLight3D.shadow_enabled = toggled
 
 
-func _toggle_v_sync(toggled: bool) -> void:
+func _toggle_v_sync(_toggled: bool) -> void:
 	if DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_ENABLED:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	else:
@@ -69,9 +68,9 @@ func add_models(count: int = 10):
 		
 		# Random position within a reasonable area
 		instance.position = Vector3(
-			randf_range(-15, 15),
-			randf_range(0, 15),
-			randf_range(-15, 15)
+			randf_range(-7, 7),
+			randf_range(0, 7),
+			randf_range(-7, 7)
 		)
 		
 		# Random rotation
@@ -101,7 +100,7 @@ func update_stats():
 	fps_label.text = "FPS: %d" % Engine.get_frames_per_second()
 	
 	var poly_count = format_number( meshes.size() * model_poly_count )  # Use actual model polygon count
-	polygon_count_label.text = "Polygons: " + poly_count
+	polygon_count_label.text = "Monkey Poly #: " + poly_count
 	
 	# Note: Draw calls are approximated here
 	draw_calls_label.text = "Draw Calls: " +  format_number( RenderingServer.get_rendering_info(RenderingServer.RENDERING_INFO_TOTAL_DRAW_CALLS_IN_FRAME) ) 
