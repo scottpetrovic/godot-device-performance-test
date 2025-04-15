@@ -2,9 +2,9 @@
 
 ![Screenshot](./readme.png)
 
-test it out: https://subtle-semolina-55f198.netlify.app
+test it out on itch.io: https://scottpetrovic.itch.io/godot-device-performance-test
 
-I was testing out the HTML5 export in Godot 4.3 and was seeing differences between my local preview, HTML5 export on computer, and HTML5 export on mobile phone. Because of the hardware differences between them, I thought of creating this litle tool to help see how a device can handle.
+I was testing out the HTML5 export in Godot 4.4 and was seeing differences between my local preview, HTML5 export on computer, and HTML5 export on mobile phone. Because of the hardware differences between them, I thought of creating this litle tool to help see how a device can handle.
 
 It is mostly a bunch of buttons to turn on and off features. You can look at draw calls, frames per second to see how each feature affects things. There might even be things that don't work/appear based off the device you are using.
 
