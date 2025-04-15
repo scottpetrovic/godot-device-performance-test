@@ -1,10 +1,10 @@
 [gd_scene load_steps=22 format=3 uid="uid://bvww53ocvp08f"]
 
-[ext_resource type="Script" path="res://test_scene.gd" id="1_06caa"]
-[ext_resource type="Script" path="res://orbit_camera.gd" id="2_bu4di"]
-[ext_resource type="Script" path="res://toggle_buttons.gd" id="2_go6nl"]
-[ext_resource type="Script" path="res://shader_controls.gd" id="3_c2eev"]
-[ext_resource type="Shader" path="res://shaders/ground-grid.gdshader" id="4_qu8g5"]
+[ext_resource type="Script" uid="uid://c7npmp7ymnisg" path="res://test_scene.gd" id="1_06caa"]
+[ext_resource type="Script" uid="uid://cmgq4iati13gf" path="res://orbit_camera.gd" id="2_bu4di"]
+[ext_resource type="Script" uid="uid://dt1gv265myev" path="res://toggle_buttons.gd" id="2_go6nl"]
+[ext_resource type="Script" uid="uid://csuqcw0ydrs3i" path="res://shader_controls.gd" id="3_c2eev"]
+[ext_resource type="Shader" uid="uid://bd1i7svj72jds" path="res://shaders/ground-grid.gdshader" id="4_qu8g5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fhgt6"]
 sky_top_color = Color(0.15323, 0.453704, 0.40376, 1)
