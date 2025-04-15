@@ -110,37 +110,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
-layout_mode = 0
-offset_left = 17.0
-offset_top = 11.0
-offset_right = 248.0
-offset_bottom = 162.0
-color = Color(0.235294, 0.235294, 0.235294, 0.333333)
-
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 0
-offset_left = 29.0
-offset_top = 24.0
-offset_right = 214.0
-offset_bottom = 149.0
-theme_override_constants/separation = 10
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -124.0
+offset_right = 197.0
+offset_bottom = -11.0
+grow_vertical = 0
+theme_override_constants/separation = 5
 metadata/_edit_group_ = true
 
 [node name="FPSLabel" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "FPS: 20"
 
 [node name="PolygonCountLabel" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Poly Count: "
 
 [node name="DrawCallsLabel" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Draw calls"
 
 [node name="ModelCountLabel" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Model count"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
@@ -151,93 +151,113 @@ anchor_right = 1.0
 offset_left = -187.0
 offset_top = 15.0
 offset_right = -20.0
-offset_bottom = 381.0
+offset_bottom = 245.0
 grow_horizontal = 0
 theme_override_constants/separation = 10
 metadata/_edit_group_ = true
 
+[node name="FullScreenButton" type="Button" parent="Control/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+toggle_mode = true
+text = "FullScreen Toggle"
+
 [node name="AddModelsButton" type="Button" parent="Control/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Add 10 monkeys"
 
 [node name="RemoveModelsButton" type="Button" parent="Control/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Remove 10 monkeys"
 
 [node name="ShadowsEnableButton" type="Button" parent="Control/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 toggle_mode = true
 text = "Toggle Shadows"
 
 [node name="ToggleVSyncButton" type="Button" parent="Control/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 toggle_mode = true
 text = "Toggle VSync"
 
 [node name="ToggleContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -341.0
-offset_top = 15.0
-offset_right = -217.0
-offset_bottom = 185.0
-grow_horizontal = 0
+offset_left = 19.0
+offset_top = 269.0
+offset_right = 143.0
+offset_bottom = 439.0
 theme_override_constants/separation = 10
 script = ExtResource("2_go6nl")
 metadata/_edit_group_ = true
 
 [node name="ToggleCPUParticlesButton" type="Button" parent="Control/ToggleContainer"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 toggle_mode = true
 text = "CPU Particles"
 
 [node name="ToggleGPUParticlesButton" type="Button" parent="Control/ToggleContainer"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 toggle_mode = true
 text = "GPU Particles"
 
 [node name="ToggleWorldButton" type="Button" parent="Control/ToggleContainer"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 toggle_mode = true
 text = "World Sky"
 
 [node name="ShaderContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 0
-offset_left = 29.0
-offset_top = 177.0
-offset_right = 186.0
-offset_bottom = 509.0
+offset_left = 17.0
+offset_top = 9.0
+offset_right = 161.0
+offset_bottom = 221.0
+theme_override_constants/separation = 10
 script = ExtResource("3_c2eev")
 metadata/_edit_group_ = true
 
 [node name="NoshaderButton" type="Button" parent="Control/ShaderContainer"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Basic Shader"
 
 [node name="BasicGridShaderButton" type="Button" parent="Control/ShaderContainer"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Basic Grid Shader"
 
 [node name="NoiseShaderButton" type="Button" parent="Control/ShaderContainer"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Noise Shader"
 
 [node name="TextureShaderButton" type="Button" parent="Control/ShaderContainer"]
-custom_minimum_size = Vector2(0, 80)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Texture Shader"
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -228.0
+offset_top = -39.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "HTML5 Device Tester"
+horizontal_alignment = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10)

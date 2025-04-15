@@ -13,6 +13,7 @@ var meshes: Array[MeshInstance3D] = []
 @onready var remove_models_button: Button = $Control/VBoxContainer2/RemoveModelsButton
 @onready var shadows_enable_button: Button = $Control/VBoxContainer2/ShadowsEnableButton
 @onready var toggle_v_sync_button: Button = $Control/VBoxContainer2/ToggleVSyncButton
+@onready var full_screen_button: Button = $Control/VBoxContainer2/FullScreenButton
 
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 
@@ -27,11 +28,16 @@ func _ready():
 	remove_models_button.pressed.connect(remove_models)	
 	shadows_enable_button.toggled.connect(_toggle_shadows)
 	toggle_v_sync_button.toggled.connect(_toggle_v_sync)
+	full_screen_button.toggled.connect(_toggle_fullscreen)
 	
 	# Load the monkey.glb model
 	load_model_template("res://monkey.glb")
 	
-	
+
+func _toggle_fullscreen(toggled: bool) -> void:
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if toggled else DisplayServer.WINDOW_MODE_WINDOWED)
+
+
 func load_model_template(model_file: String) -> void:
 	var scene = load(model_file) # Adjust path as needed
 	if scene:
